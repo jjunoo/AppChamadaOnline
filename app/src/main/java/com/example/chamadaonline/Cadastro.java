@@ -58,10 +58,13 @@ public class Cadastro extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                //Cadastro de Usuário
+
                 String etMatricula = matricula.getText().toString();
                 String etSenha = senha.getText().toString();
                 String etSenhaConfirma = senhaConfirma.getText().toString();
 
+                //Valida Campo
                 if (!isStringEmpty(etMatricula) && !isStringEmpty(etSenha) && !isStringEmpty(etSenhaConfirma)){
 
                     // Alerta de passwords diferentes
@@ -85,7 +88,7 @@ public class Cadastro extends AppCompatActivity {
                         Toast.makeText(Cadastro.this,"As senhas precisam ser iguais", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-
+                    //Alerta de campo em branco
                     Toast.makeText(Cadastro.this, "Você não pode deixar nenhum campo em branco!", Toast.LENGTH_SHORT).show();
                 }
             }
