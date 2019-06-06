@@ -63,7 +63,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.089"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etMatricula3" />
+        app:layout_constraintTop_toBottomOf="@+id/etMatricula" />
 
     <TextView
         android:id="@+id/nome"
@@ -80,7 +80,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/etMatricula"
+        android:id="@+id/etEmail"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -94,7 +94,7 @@
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <EditText
-        android:id="@+id/etMatricula3"
+        android:id="@+id/etMatricula"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

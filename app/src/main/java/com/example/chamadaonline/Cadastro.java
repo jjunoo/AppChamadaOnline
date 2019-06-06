@@ -16,6 +16,12 @@ public class Cadastro extends AppCompatActivity {
 
 
 
+    @BindView(R.id.etNome)
+    EditText nome;
+
+    @BindView(R.id.etEmail)
+    EditText email;
+
     @BindView(R.id.etMatricula)
     EditText matricula;
 
@@ -60,6 +66,8 @@ public class Cadastro extends AppCompatActivity {
 
                 //Cadastro de Usuário
 
+                String etNome = nome.getText().toString();
+                String etEmail = email.getText().toString();
                 String etMatricula = matricula.getText().toString();
                 String etSenha = senha.getText().toString();
                 String etSenhaConfirma = senhaConfirma.getText().toString();
@@ -73,6 +81,8 @@ public class Cadastro extends AppCompatActivity {
                         SharedPreferences sharedPrefs = getSharedPreferences("userdata", MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPrefs.edit();
 
+                        editor.putString("nome",etNome);
+                        editor.putString("email",etEmail);
                         editor.putString("matricula",etMatricula);
                         editor.putString("password",etSenha);
 
