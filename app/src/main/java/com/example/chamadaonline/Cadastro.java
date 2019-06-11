@@ -1,5 +1,6 @@
 package com.example.chamadaonline;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -11,6 +12,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.chamadaonline.config.ConfiguracaoFirebase;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class Cadastro extends AppCompatActivity {
 
@@ -33,6 +40,9 @@ public class Cadastro extends AppCompatActivity {
 
     @BindView(R.id.btnSalvar)
     Button salvar;
+
+    private FirebaseAuth autenticacao;
+    private Usuarios usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,23 +82,35 @@ public class Cadastro extends AppCompatActivity {
                 String etSenha = senha.getText().toString();
                 String etSenhaConfirma = senhaConfirma.getText().toString();
 
+                //converter String Matricula para Integer
+                int matricula = Integer.parseInt(etMatricula);
+
+
                 //Valida Campo
                 if (!isStringEmpty(etMatricula) && !isStringEmpty(etSenha) && !isStringEmpty(etSenhaConfirma)){
 
                     // Alerta de passwords diferentes
-                    if ( etSenha == etSenhaConfirma ){//preciso utilizar o metodo equals()
+                    if ( etSenha.equals(etSenhaConfirma) ){//preciso utilizar o metodo equals()
 
-                        SharedPreferences sharedPrefs = getSharedPreferences("userdata", MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPrefs.edit();
+                        //SharedPreferences sharedPrefs = getSharedPreferences("userdata", MODE_PRIVATE);
+                        //SharedPreferences.Editor editor = sharedPrefs.edit();
 
-                        editor.putString("nome",etNome);
-                        editor.putString("email",etEmail);
-                        editor.putString("matricula",etMatricula);
-                        editor.putString("password",etSenha);
+                        //editor.putString("nome",etNome);
+                        //editor.putString("email",etEmail);
+                        //editor.putString("matricula",etMatricula);
+                        //editor.putString("password",etSenha);
 
-                        editor.apply();
+                        //editor.apply();
 
-                        Toast.makeText(Cadastro.this,"Você foi cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
+
+                        usuario = new Usuarios();
+
+                        usuario.setNome(etNome);
+                        usuario.setEmail(etEmail);
+                        usuario.setMatricula(matricula);
+                        usuario.setSenha(etSenha);
+
+                        cadastrarUsuario();
 
                         Intent intent = new Intent(Cadastro.this, Login.class);
                         startActivity(intent);
@@ -105,6 +127,22 @@ public class Cadastro extends AppCompatActivity {
         });
     }
 
+    public void cadastrarUsuario(){
+
+        autenticacao = ConfiguracaoFirebase.getFirebaseAutenticacao();
+        autenticacao.createUserWithEmailAndPassword(usuario.getEmail(),usuario.getSenha()).addOnCompleteListener(
+                this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(Cadastro.this, "Você foi cadastrado com sucesso!",Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(Cadastro.this, "Erro ao efetuar o seu cadastro!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
 
 
 }
