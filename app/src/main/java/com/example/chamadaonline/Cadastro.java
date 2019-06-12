@@ -18,6 +18,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 
 public class Cadastro extends AppCompatActivity {
 
@@ -87,20 +90,10 @@ public class Cadastro extends AppCompatActivity {
 
 
                 //Valida Campo
-                if (!isStringEmpty(etMatricula) && !isStringEmpty(etSenha) && !isStringEmpty(etSenhaConfirma)){
+                if (!isStringEmpty(etNome) && !isStringEmpty(etEmail) && !isStringEmpty(etMatricula) && !isStringEmpty(etSenha) && !isStringEmpty(etSenhaConfirma)){
 
                     // Alerta de passwords diferentes
-                    if ( etSenha.equals(etSenhaConfirma) ){//preciso utilizar o metodo equals()
-
-                        //SharedPreferences sharedPrefs = getSharedPreferences("userdata", MODE_PRIVATE);
-                        //SharedPreferences.Editor editor = sharedPrefs.edit();
-
-                        //editor.putString("nome",etNome);
-                        //editor.putString("email",etEmail);
-                        //editor.putString("matricula",etMatricula);
-                        //editor.putString("password",etSenha);
-
-                        //editor.apply();
+                    if ( etSenha.equals(etSenhaConfirma) ){
 
 
                         usuario = new Usuarios();
@@ -112,8 +105,7 @@ public class Cadastro extends AppCompatActivity {
 
                         cadastrarUsuario();
 
-                        Intent intent = new Intent(Cadastro.this, Login.class);
-                        startActivity(intent);
+
 
                     } else {
 
@@ -136,8 +128,25 @@ public class Cadastro extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
                     Toast.makeText(Cadastro.this, "Você foi cadastrado com sucesso!",Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(Cadastro.this, Login.class);
+                    startActivity(intent);
                 }else {
-                    Toast.makeText(Cadastro.this, "Erro ao efetuar o seu cadastro!", Toast.LENGTH_SHORT).show();
+
+                    String excecao = "";
+                    try{
+                        throw task.getException();
+                    } catch (FirebaseAuthWeakPasswordException e){
+                        excecao = "Digite uma senha mais forte!";
+                    } catch (FirebaseAuthInvalidCredentialsException e){
+                        excecao = "Por favor, digite um e-mail válido!";
+                    } catch (FirebaseAuthUserCollisionException e){
+                        excecao = "Este E-mail já foi cadastrado";
+                    } catch (Exception e){
+                        excecao = "Erro ao cadastrar o usuário " + e.getMessage();
+                        e.printStackTrace();
+                    }
+                    Toast.makeText(Cadastro.this, excecao, Toast.LENGTH_SHORT).show();
                 }
             }
         });

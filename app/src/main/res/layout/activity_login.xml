@@ -23,11 +23,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSenha"
+        app:layout_constraintTop_toBottomOf="@+id/etSenhaLogin"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/senha2"
+        android:id="@+id/tvSenha2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -38,10 +38,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.075"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMatricula4" />
+        app:layout_constraintTop_toBottomOf="@+id/etEmailLogin" />
 
     <EditText
-        android:id="@+id/tvSenha"
+        android:id="@+id/etSenhaLogin"
         android:layout_width="339dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -55,18 +55,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/senha2"
+        app:layout_constraintTop_toBottomOf="@+id/tvSenha2"
         app:layout_constraintVertical_bias="0.034" />
 
 
     <TextView
-        android:id="@+id/matricula2"
+        android:id="@+id/etEmail2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="8dp"
-        android:text="Matrícula"
+        android:text="Email"
         android:textAppearance="@style/TextAppearance.AppCompat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.08"
@@ -74,18 +74,18 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <EditText
-        android:id="@+id/tvMatricula4"
+        android:id="@+id/etEmailLogin"
         android:layout_width="341dp"
         android:layout_height="42dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
-        android:hint="Informe a sua matrícula"
+        android:hint="Informe o seu email"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/matricula2" />
+        app:layout_constraintTop_toBottomOf="@+id/etEmail2" />
 
     <TextView
         android:id="@+id/textView3"
