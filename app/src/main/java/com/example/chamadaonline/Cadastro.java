@@ -23,7 +23,7 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 
 public class Cadastro extends AppCompatActivity {
-
+// mudei verão do android de 3.4.1 para 3.2.1 comentei isso só para comitar e testar na faculdade
 
 
     @BindView(R.id.etNome)
