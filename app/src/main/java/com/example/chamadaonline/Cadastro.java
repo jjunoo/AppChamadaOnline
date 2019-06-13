@@ -129,8 +129,9 @@ public class Cadastro extends AppCompatActivity {
                 if (task.isSuccessful()){
                     Toast.makeText(Cadastro.this, "Você foi cadastrado com sucesso!",Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(Cadastro.this, Login.class);
-                    startActivity(intent);
+                    abrirTelaLogin();
+                    finish();
+
                 }else {
 
                     String excecao = "";
@@ -151,6 +152,11 @@ public class Cadastro extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void abrirTelaLogin(){
+        startActivity(new Intent(this, Login.class));
+        finish();
     }
 
 

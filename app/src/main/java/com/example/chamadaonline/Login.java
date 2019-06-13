@@ -2,6 +2,8 @@ package com.example.chamadaonline;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,8 +15,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+
+
 
 public class Login extends AppCompatActivity {
 
@@ -47,12 +51,11 @@ public class Login extends AppCompatActivity {
                         usuario = new Usuarios();
                         usuario.setEmail(email);
                         usuario.setSenha(senha);
+                        validarLogin();
 
-
-
-                    }
+                    }else
                     Toast.makeText(Login.this, "Digite o seu email!", Toast.LENGTH_SHORT).show();
-                }
+                }else
                 Toast.makeText(Login.this, "Digite a sua senha!", Toast.LENGTH_SHORT).show();
 
             }
@@ -69,13 +72,30 @@ public class Login extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    Toast.makeText(Login.this, "Sucesso ao fazer o login", Toast.LENGTH_SHORT).show();
 
-                }else{
-                    Toast.makeText(Login.this, "Erro ao fazer login. Verifique seu email e senha", Toast.LENGTH_SHORT).show();
+                   abrirTelaPrincipal();
+                   finish();
+
+                }else {
+                    String excecao = "";
+                    try {
+                        throw task.getException();
+                    }catch (FirebaseAuthInvalidUserException e){
+                        excecao = "Usuário não cadastrado";
+                    }catch (FirebaseAuthInvalidCredentialsException e){
+                        excecao = "Email e senha não correspondem a um usuário cadastrado";
+                    }catch (Exception e){
+                        excecao = "Erro ao logar usuário" + e.getMessage();
+                        e.printStackTrace();
+                    }
+                    Toast.makeText(Login.this, excecao, Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
+    }
+
+    public void abrirTelaPrincipal(){
+        startActivity(new Intent(this, PrincipalActivity.class));
+        finish();
     }
 }
