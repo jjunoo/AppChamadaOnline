@@ -102,11 +102,7 @@ public class Cadastro extends AppCompatActivity {
                         usuario.setSenha(etSenha);
 
                         cadastrarUsuario();
-
-
-
                     } else {
-
                         Toast.makeText(Cadastro.this,"As senhas precisam ser iguais", Toast.LENGTH_SHORT).show();
                     }
                 } else {
@@ -156,8 +152,4 @@ public class Cadastro extends AppCompatActivity {
         startActivity(new Intent(this, Login.class));
         finish();
     }
-
-//teste 3
-    
-
 }
