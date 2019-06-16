@@ -157,6 +157,7 @@ public class Cadastro extends AppCompatActivity {
         finish();
     }
 
-//teste 1 
+//teste 3
+    
 
 }
