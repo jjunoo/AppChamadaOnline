@@ -44,7 +44,7 @@ public class Login extends AppCompatActivity {
 
                 String email = etEmail.getText().toString();
                 String senha = etSenha.getText().toString();
-
+                btnEntrar.setVisibility(View.INVISIBLE);
                 if (!senha.isEmpty()){
                     if (!email.isEmpty()){
 
@@ -60,7 +60,7 @@ public class Login extends AppCompatActivity {
 
             }
         });
-
+        btnEntrar.setVisibility(View.VISIBLE);
     }
     public void validarLogin() {
 
