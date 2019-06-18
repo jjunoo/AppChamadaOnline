@@ -41,7 +41,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
                     pinServidor = GetPinServidor(pinUsuario);//devolve o código pin
 
-                    if (pinUsuario == pinServidor){
+                    if (pinUsuario.equals(pinServidor)){
 
                         //usuario = new Usuarios();
                         //usuario.setEmail(email);
