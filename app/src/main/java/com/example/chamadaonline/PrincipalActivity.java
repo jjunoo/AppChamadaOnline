@@ -43,11 +43,11 @@ public class PrincipalActivity extends AppCompatActivity {
 
                 String rand = etPIN.getText().toString();
 
-<<<<<<< HEAD
+
                     if (pinUsuario.equals(pinServidor)){
-=======
-                if (!rand.isEmpty()){
->>>>>>> 596dfe28af6db10ac66ec0a130a130a74768dbb6
+
+                        if (!rand.isEmpty()){
+
 
 
                         if(!usuarioPresençaDia()) {
