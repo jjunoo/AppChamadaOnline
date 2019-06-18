@@ -46,7 +46,7 @@ public class PrincipalActivity extends AppCompatActivity {
                 String rand = etPIN.getText().toString();
 
                 if (!rand.isEmpty()){
-    // JUNO ajuda porra e nao tem nada de HEAD  
+                    // JUNO ajuda porra e nao tem nada de HEAD  ver ai 
 
                         if(!usuarioPresençaDia()) {
                         //long x=new Date().getTime(); // como pegar data
