@@ -89,17 +89,18 @@ public class PrincipalActivity extends AppCompatActivity {
         //se não voltar false
 
         return retorno;
-    }}
+    }
 
-   /* public void salvarPresenca(){
+    public void salvarPresenca(){
 
         String idUsuario = ConfiguracaoFirebase.getIdUsuario();
         DatabaseReference alunoRef = ConfiguracaoFirebase.getFirebaseDatabase()
-                .child("anu");
+                .child("Chamada").child("Data").child("Presenca");
 
         alunoRef.child(idUsuario)
-                .child(getIdAnuncio())
+                .child("Chamada")
+                .child("Data")
+                .child("Presenca")
                 .setValue(this);
-
         return;
-    }*/
+    }}
