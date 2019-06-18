@@ -30,18 +30,16 @@ public class PrincipalActivity extends AppCompatActivity {
         etPIN = findViewById(R.id.etPIN);
         btnEnviarPIN = findViewById(R.id.btnEnviarPIN);
 
-        btnEnviarPIN.setOnClickListener(new View.OnClickListener() {
+        btnEnviarPIN.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
-                String pinUsuario = etPIN.getText().toString();
-                String pinServidor = "";
+                final FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference pinRef = ConfiguracaoFirebase.getFirebaseDatabase().child("id_chamada").child("rand");
 
-                if (!pinUsuario.isEmpty()){
+                String rand = etPIN.getText().toString();
 
-                    pinServidor = GetPinServidor(pinUsuario);//devolve o código pin
-
-                    if (pinUsuario == pinServidor){
+                if (!rand.isEmpty()){
 
 
                         if(!usuarioPresençaDia()) {
@@ -55,12 +53,18 @@ public class PrincipalActivity extends AppCompatActivity {
                             Toast.makeText(PrincipalActivity.this, "Usuário com presença no dia já!", Toast.LENGTH_SHORT).show();
                     }else
                         Toast.makeText(PrincipalActivity.this, "Código PIN Inválido!", Toast.LENGTH_SHORT).show();
-                }else
-                    Toast.makeText(PrincipalActivity.this, "Digite o Código PIN!", Toast.LENGTH_SHORT).show();
 
             }
         });
     }
+   /* private String GetPinServidor(String rand)
+    {
+        String retorno = "";
+
+        //Toast.makeText(PrincipalActivity.this, "Erro ao buscar o Código PIN" + e.getMessage() , Toast.LENGTH_SHORT).show();
+        return retorno;
+    }*/
+
 
     private boolean usuarioPresençaDia(){
         boolean retorno = false;
@@ -69,14 +73,5 @@ public class PrincipalActivity extends AppCompatActivity {
         //se não voltar false
 
         return retorno;
-    }
-
-    private String GetPinServidor(String pinUsuario)
-    {
-        String retorno = "";
-
-        //Toast.makeText(PrincipalActivity.this, "Erro ao buscar o Código PIN" + e.getMessage() , Toast.LENGTH_SHORT).show();
-        return retorno;
-    }
-}
+    }}
 
