@@ -46,7 +46,7 @@ public class PrincipalActivity extends AppCompatActivity {
                 String rand = etPIN.getText().toString();
 
                 if (!rand.isEmpty()){
-
+    // JUNO ajuda porra e nao tem nada de HEAD  
 
                         if(!usuarioPresençaDia()) {
                         //long x=new Date().getTime(); // como pegar data
@@ -54,7 +54,7 @@ public class PrincipalActivity extends AppCompatActivity {
                             DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
                             String strDate = dateFormat.format(date);
                             String strdate =date.toString();
-                            
+
                             //System.out.println("Converted String: " + strDate);
                             //int y=Integer.parseInt(data.getText().toString()); // campo para mandar data via pin porém ciar uma campo de data
                             //aqui tem que fazer todo o update do usuario para que seja realizada a chamada
