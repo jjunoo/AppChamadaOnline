@@ -43,11 +43,16 @@ public class PrincipalActivity extends AppCompatActivity {
 
                     if (pinUsuario == pinServidor){
 
-                        //usuario = new Usuarios();
-                        //usuario.setEmail(email);
-                        //usuario.setSenha(senha);
-                        //validarLogin();
 
+                        if(!usuarioPresençaDia()) {
+
+                            //aqui tem que fazer todo o update do usuario para que seja realizada a chamada
+
+
+                            etPIN.setText("");
+                            Toast.makeText(PrincipalActivity.this, "Presença do dia confirmada!", Toast.LENGTH_SHORT).show();
+                        }else
+                            Toast.makeText(PrincipalActivity.this, "Usuário com presença no dia já!", Toast.LENGTH_SHORT).show();
                     }else
                         Toast.makeText(PrincipalActivity.this, "Código PIN Inválido!", Toast.LENGTH_SHORT).show();
                 }else
@@ -55,6 +60,15 @@ public class PrincipalActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private boolean usuarioPresençaDia(){
+        boolean retorno = false;
+
+        //logica para verificar no banco se existir voltar true
+        //se não voltar false
+
+        return retorno;
     }
 
     private String GetPinServidor(String pinUsuario)
