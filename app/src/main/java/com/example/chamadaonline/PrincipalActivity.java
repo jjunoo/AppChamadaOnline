@@ -47,7 +47,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
                 if (!rand.isEmpty()){
 
-                   
+
 
                     if(!usuarioPresencaDia()) {
                         //long x=new Date().getTime(); // como pegar data
@@ -63,10 +63,8 @@ public class PrincipalActivity extends AppCompatActivity {
 
 
                     // DATA e PIN estão sendo pegos obteção de dados OK testado
-
                         etPIN.setText("");
-                        Toast.makeText(PrincipalActivity.this, strdate, Toast.LENGTH_SHORT).show();
-                        //Toast.makeText(PrincipalActivity.this, "Presença do dia confirmada!", Toast.LENGTH_SHORT).show();
+                       Toast.makeText(PrincipalActivity.this, "Presença do dia confirmada!", Toast.LENGTH_SHORT).show();
                     }else
                         Toast.makeText(PrincipalActivity.this, "Usuário com presença no dia já!", Toast.LENGTH_SHORT).show();
                 }else
