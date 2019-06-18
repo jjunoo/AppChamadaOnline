@@ -46,7 +46,8 @@ public class PrincipalActivity extends AppCompatActivity {
                 String rand = etPIN.getText().toString();
 
                 if (!rand.isEmpty()){
-                    // JUNO ajuda porra e nao tem nada de HEAD
+
+                   
 
                     if(!usuarioPresencaDia()) {
                         //long x=new Date().getTime(); // como pegar data
@@ -61,8 +62,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
 
 
-
-
+                    // DATA e PIN estão sendo pegos obteção de dados OK testado
 
                         etPIN.setText("");
                         Toast.makeText(PrincipalActivity.this, strdate, Toast.LENGTH_SHORT).show();
