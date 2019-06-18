@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.sql.Timestamp;
 
 import com.example.chamadaonline.config.ConfiguracaoFirebase;
@@ -40,15 +42,21 @@ public class PrincipalActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference pinRef = ConfiguracaoFirebase.getFirebaseDatabase().child("id_chamada").child("rand");
-
+                DatabaseReference data = ConfiguracaoFirebase.getFirebaseDatabase().child("Chamada").child("Data");
                 String rand = etPIN.getText().toString();
 
                 if (!rand.isEmpty()){
 
 
                         if(!usuarioPresençaDia()) {
-                        long x=new Date().getTime(); // como pegar data
-                        int y=Integer.parseInt(etPIN.getText().toString()); // campo para mandar data via pin porém ciar uma campo de data 
+                        //long x=new Date().getTime(); // como pegar data
+                            Date date = Calendar.getInstance().getTime();
+                            DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+                            String strDate = dateFormat.format(date);
+                            String strdate =date.toString();
+                            
+                            //System.out.println("Converted String: " + strDate);
+                            //int y=Integer.parseInt(data.getText().toString()); // campo para mandar data via pin porém ciar uma campo de data
                             //aqui tem que fazer todo o update do usuario para que seja realizada a chamada
 
 
@@ -62,13 +70,13 @@ public class PrincipalActivity extends AppCompatActivity {
             }
         });
     }
-   /* private String GetPinServidor(String rand)
+    private String GetPinServidor(String rand)
     {
         String retorno = "";
 
         //Toast.makeText(PrincipalActivity.this, "Erro ao buscar o Código PIN" + e.getMessage() , Toast.LENGTH_SHORT).show();
         return retorno;
-    }*/
+    }
 
 
     private boolean usuarioPresençaDia(){
