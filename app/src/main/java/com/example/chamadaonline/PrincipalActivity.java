@@ -8,6 +8,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.sql.Timestamp;
+
 import com.example.chamadaonline.config.ConfiguracaoFirebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -43,7 +47,8 @@ public class PrincipalActivity extends AppCompatActivity {
 
 
                         if(!usuarioPresençaDia()) {
-
+                        long x=new Date().getTime(); // como pegar data
+                        int y=Integer.parseInt(etPIN.getText().toString()); // campo para mandar data via pin porém ciar uma campo de data 
                             //aqui tem que fazer todo o update do usuario para que seja realizada a chamada
 
 
