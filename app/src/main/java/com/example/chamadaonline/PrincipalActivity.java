@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.sql.Timestamp;
 
 import com.example.chamadaonline.config.ConfiguracaoFirebase;
@@ -40,42 +42,49 @@ public class PrincipalActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference pinRef = ConfiguracaoFirebase.getFirebaseDatabase().child("id_chamada").child("rand");
-
+                DatabaseReference data = ConfiguracaoFirebase.getFirebaseDatabase().child("Chamada").child("Data");
                 String rand = etPIN.getText().toString();
 
+                if (!rand.isEmpty()){
+                    // JUNO ajuda porra e nao tem nada de HEAD
 
-                    if (pinUsuario.equals(pinServidor)){
+                    if(!usuarioPresencaDia()) {
+                        //long x=new Date().getTime(); // como pegar data
+                        Date date = Calendar.getInstance().getTime();
+                        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+                        String strDate = dateFormat.format(date);
+                        String strdate =date.toString();
 
-                        if (!rand.isEmpty()){
+                        //System.out.println("Converted String: " + strDate);
+                        //int y=Integer.parseInt(data.getText().toString()); // campo para mandar data via pin porém ciar uma campo de data
+                        //aqui tem que fazer todo o update do usuario para que seja realizada a chamada
 
 
 
-                        if(!usuarioPresençaDia()) {
-                        long x=new Date().getTime(); // como pegar data
-                        int y=Integer.parseInt(etPIN.getText().toString()); // campo para mandar data via pin porém ciar uma campo de data 
-                            //aqui tem que fazer todo o update do usuario para que seja realizada a chamada
 
 
-                            etPIN.setText("");
-                            Toast.makeText(PrincipalActivity.this, "Presença do dia confirmada!", Toast.LENGTH_SHORT).show();
-                        }else
-                            Toast.makeText(PrincipalActivity.this, "Usuário com presença no dia já!", Toast.LENGTH_SHORT).show();
+
+                        etPIN.setText("");
+                        Toast.makeText(PrincipalActivity.this, strdate, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(PrincipalActivity.this, "Presença do dia confirmada!", Toast.LENGTH_SHORT).show();
                     }else
-                        Toast.makeText(PrincipalActivity.this, "Código PIN Inválido!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PrincipalActivity.this, "Usuário com presença no dia já!", Toast.LENGTH_SHORT).show();
+                }else
+                    Toast.makeText(PrincipalActivity.this, "Código PIN Inválido!", Toast.LENGTH_SHORT).show();
 
             }
         });
     }
-   /* private String GetPinServidor(String rand)
+    private String GetPinServidor(String rand)
     {
         String retorno = "";
 
         //Toast.makeText(PrincipalActivity.this, "Erro ao buscar o Código PIN" + e.getMessage() , Toast.LENGTH_SHORT).show();
         return retorno;
-    }*/
+    }
 
 
-    private boolean usuarioPresençaDia(){
+    private boolean usuarioPresencaDia(){
         boolean retorno = false;
 
         //logica para verificar no banco se existir voltar true
@@ -84,3 +93,15 @@ public class PrincipalActivity extends AppCompatActivity {
         return retorno;
     }}
 
+   /* public void salvarPresenca(){
+
+        String idUsuario = ConfiguracaoFirebase.getIdUsuario();
+        DatabaseReference alunoRef = ConfiguracaoFirebase.getFirebaseDatabase()
+                .child("anu");
+
+        alunoRef.child(idUsuario)
+                .child(getIdAnuncio())
+                .setValue(this);
+
+        return;
+    }*/
