@@ -59,6 +59,7 @@ public class PrincipalActivity extends AppCompatActivity {
                         //System.out.println("Converted String: " + strDate);
                         //int y=Integer.parseInt(data.getText().toString()); // campo para mandar data via pin porém ciar uma campo de data
                         //aqui tem que fazer todo o update do usuario para que seja realizada a chamada
+                        salvarPresenca();
 
 
 
